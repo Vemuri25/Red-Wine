@@ -1,1 +1,64 @@
-body { font-family: Arial; }
+/* styles.css — simple clean layout for GitHub Pages deployment */
+:root{
+  --bg:#0f172a;
+  --card:#0b1220;
+  --muted:#94a3b8;
+  --accent:#60a5fa;
+  --glass: rgba(255,255,255,0.03);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg,#071024 0%, #071a2a 100%);
+  color:#e6eef8;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding:40px;
+}
+
+.container{
+  max-width:1100px;
+  margin:0 auto;
+}
+
+header h1{margin:0 0 6px 0;font-size:28px}
+.lead{color:var(--muted);margin:0 0 20px 0}
+
+.badge-row{display:flex;gap:20px;align-items:center;margin-bottom:22px}
+.progress-card{
+  background:var(--glass);
+  padding:18px;
+  border-radius:12px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  min-width:160px;
+}
+.progress-circle{
+  width:110px;height:110px;border-radius:999px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:20px;
+  background:linear-gradient(135deg, rgba(96,165,250,0.12), rgba(99,102,241,0.06));
+  border:1px solid rgba(255,255,255,0.04);
+  color: #cfe9ff;
+}
+.progress-label{margin-top:10px;color:var(--muted);font-size:13px}
+
+.info-card{
+  background:var(--card);padding:14px;border-radius:10px;
+  display:flex;flex-direction:column;gap:8px;align-items:flex-start;
+}
+.download-btn{
+  display:inline-block;padding:8px 12px;border-radius:8px;text-decoration:none;
+  background:linear-gradient(90deg,#3b82f6,#7c3aed);color:white;font-weight:600;
+  margin-top:8px;
+}
+
+.table-wrap{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:6px 8px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.03)}
+th{position:sticky;top:0;background:rgba(11,17,28,0.6);backdrop-filter:blur(6px);}
+
+footer{margin-top:18px;color:var(--muted);font-size:13px}

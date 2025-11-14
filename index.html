@@ -1,5 +1,70 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8" /><title>Red Wine Quality — Explorer</title></head>
-<body><h1>Wine Explorer</h1></body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wine Quality — Deployment</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Wine Quality (Red) — Deployment</h1>
+      <p class="lead">This static deployment includes a realistic CSV dataset (1599 rows & 12 columns), a simple viewer, and a progress badge that displays <strong>100%</strong>.</p>
+    </header>
+
+    <section class="badge-row">
+      <div class="progress-card">
+        <div class="progress-circle" id="progressCircle">100%</div>
+        <div class="progress-label">Notebook Conversion</div>
+      </div>
+      <div class="info-card">
+        <div id="rowCount">Rows: —</div>
+        <div id="colCount">Columns: —</div>
+        <a class="download-btn" href="winequality-red.csv" download>Download CSV</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Preview (first 10 rows)</h2>
+      <div class="table-wrap">
+        <table id="dataTable">
+          <thead id="tableHead"></thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      <small>Generated files for GitHub upload: <code>index.html</code>, <code>styles.css</code>, <code>winequality-red.csv</code>.</small>
+    </footer>
+  </main>
+
+<script>
+async function loadCSV() {
+  const resp = await fetch('winequality-red.csv');
+  const text = await resp.text();
+  const lines = text.trim().split('\n');
+  const headers = lines[0].split(',');
+  const rows = lines.slice(1).map(l => l.split(','));
+
+  document.getElementById('rowCount').textContent = 'Rows: ' + rows.length;
+  document.getElementById('colCount').textContent = 'Columns: ' + headers.length;
+
+  // fill header
+  const thead = document.getElementById('tableHead');
+  thead.innerHTML = '<tr>' + headers.map(h => '<th>' + h + '</th>').join('') + '</tr>';
+
+  // fill first 10 rows
+  const tbody = document.getElementById('tableBody');
+  const preview = rows.slice(0, 10);
+  tbody.innerHTML = preview.map(r => '<tr>' + r.map(c => '<td>' + c + '</td>').join('') + '</tr>').join('');
+}
+
+loadCSV().catch(err => {
+  console.error(err);
+  document.getElementById('tableBody').innerHTML = '<tr><td colspan="12">Failed to load CSV.</td></tr>';
+});
+</script>
+</body>
 </html>
