@@ -1,0 +1,7 @@
+# Treat notebooks as vendored so Linguist ignores them (helps repo show HTML/CSS)
+*.ipynb linguist-vendored
+
+# Force languages for the primary files
+index.html linguist-language=HTML
+styles.css linguist-language=CSS
+winequality-red.csv linguist-language=CSV
